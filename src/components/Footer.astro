@@ -1,0 +1,18 @@
+---
+import Social from './Social.astro'
+const platform = "github";
+const username = "schmittnicolas";
+const youtubeLink = "https://youtube.com/@nicolasschmitt974?si=Z_dRqGBsDPiaLnlP"
+---
+<style>
+    footer {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+</style>
+  
+<footer>
+    <Social platform="github" username="schmittnicolas" />
+    <Social platform="youtube" username="@nicolasschmitt974"/>
+</footer>
