@@ -1,5 +1,8 @@
 ---
-import '../styles/global.css'
+import "../styles/global.css";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 
 const pageTitle = "About Me";
 
@@ -10,7 +13,16 @@ const identity = {
     hobbies: ["running", "music", "cinema"],
 };
 
-const skills = ["Java", "React", "Astro", "Python", "C/C++", "R Studio", "TypeScript", "JavaScript"];
+const skills = [
+    "Java",
+    "React",
+    "Astro",
+    "Python",
+    "C/C++",
+    "R Studio",
+    "TypeScript",
+    "JavaScript",
+];
 
 const happy = true;
 const finished = false;
@@ -30,12 +42,9 @@ const textCase = "uppercase";
         <title>{pageTitle}</title>
     </head>
     <body>
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
-
+        <Header />
         <h1>{pageTitle}</h1>
-        <style define:vars={{skillColor, fontWeight, textCase}}>
+        <style define:vars={{ skillColor, fontWeight, textCase }}>
             h1 {
                 color: purple;
                 font-size: 4rem;
@@ -57,36 +66,40 @@ const textCase = "uppercase";
             This site will update as I complete more of the tutorial, so keep
             checking back and see how my journey is going!
         </p>
-    </body>
-    <p>Here are a few facts about me:</p>
-    <ul>
-        <li>My name is {identity.firstName}.</li>
-        <li>
-            I live in {identity.country} and I work as a {identity.occupation}.
-        </li>
+        <p>Here are a few facts about me:</p>
+        <ul>
+            <li>My name is {identity.firstName}.</li>
+            <li>
+                I live in {identity.country} and I work as a {
+                    identity.occupation
+                }.
+            </li>
+            {
+                identity.hobbies.length >= 2 && (
+                    <li>
+                        Two of my hobbies are: {identity.hobbies[0]} and{" "}
+                        {identity.hobbies[1]}
+                    </li>
+                )
+            }
+        </ul>
+        <p>My skills are:</p>
+        <ul>
+            {skills.map((skill) => <li class="skill">{skill}</li>)}
+        </ul>
+
+        {happy && <p>I am happy to be learning Astro!</p>}
+
+        {finished && <p>I finished this tutorial!</p>}
+
         {
-            identity.hobbies.length >= 2 && (
-                <li>
-                    Two of my hobbies are: {identity.hobbies[0]} and{" "}
-                    {identity.hobbies[1]}
-                </li>
+            goal === 3 ? (
+                <p>My goal is to finish in 3 days.</p>
+            ) : (
+                <p>My goal is not 3 days.</p>
             )
         }
-    </ul>
-    <p>My skills are:</p>
-    <ul>
-        {skills.map((skill) => <li class="skill">{skill}</li>)}
-    </ul>
 
-    {happy && <p>I am happy to be learning Astro!</p>}
-
-    {finished && <p>I finished this tutorial!</p>}
-
-    {
-        goal === 3 ? (
-            <p>My goal is to finish in 3 days.</p>
-        ) : (
-            <p>My goal is not 3 days.</p>
-        )
-    }
+        <Footer />
+    </body>
 </html>
